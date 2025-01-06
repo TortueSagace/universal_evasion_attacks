@@ -35,23 +35,19 @@ This library was successfully tested on several datasets with different attack a
 
 Please note that there are several dependencies to run the code. The following libraries are required (we do not force the version of the libraries, but the code was tested with the following versions):
 
-```
-Python version: 3.13.0 (tags/v3.13.0:60403a5, Oct  7 2024, 09:38:07) [MSC v.1941 64 bit (AMD64)]
 
-pandas: 2.2.3
-numpy: 2.1.3
-seaborn: 0.13.2
-tqdm: 4.67.0
-xgboost: 2.1.2
-lightgbm: 4.5.0
-sklearn: 1.5.2
-optuna: 4.0.0
-joblib: 1.4.2
-seaborn: 0.13.2
-matplotlib: 3.9.2
-
-Last run:  2025-01-06
-```
+- Python version: 3.13.0 (tags/v3.13.0:60403a5, Oct  7 2024, 09:38:07) [MSC v.1941 64 bit (AMD64)]
+- pandas: 2.2.3
+- numpy: 2.1.3
+- seaborn: 0.13.2
+- tqdm: 4.67.0
+- xgboost: 2.1.2
+- lightgbm: 4.5.0
+- sklearn: 1.5.2
+- optuna: 4.0.0
+- joblib: 1.4.2
+- seaborn: 0.13.2
+- matplotlib: 3.9.2
 
 This library is compatible with the [Adversarial Robustness Toolbox (ART) library](https://github.com/Trusted-AI/adversarial-robustness-toolbox).
 
@@ -95,7 +91,6 @@ for key, value in master.params["attack"]["HillClimbing"].items():
 # Step 1: Modification
 master.update_params("attack", "HillClimbing", {"dynamic_perturbation_factor": 1.05})
 print(f"\nNew dynamic perturbation factor: {master.params["attack"]["HillClimbing"]["dynamic_perturbation_factor"]}")
-
 
 # Step 3: Rollback (at the end of the experiment)
 master.rollback_json(category="attack", name="HillClimbing")

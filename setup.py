@@ -21,7 +21,7 @@ setup(
     + "complex cost functions to give reliable results for tabular problems.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/TortueSagace/fast_skimage",
+    url="https://github.com/TortueSagace/universal_evasion_attacks",
     author="Alexandre Le Mercier",
     author_email="alexandre.le.mercier@ulb.be",
     license="MIT",

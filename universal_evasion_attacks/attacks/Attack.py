@@ -12,9 +12,6 @@ Abstract class for all attacks to come.
 - Attacks should (optionally) keep track of the heuristic history, that said, a list of the form [{"1": **sample1, "2": **sample2, ...}, ...].
 """
 
-# Importing necessary libraries
-from attacks.header import *
-
 # Defining the abstract class for all attacks
 class Attack:
     """

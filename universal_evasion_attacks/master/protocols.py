@@ -17,12 +17,7 @@ from scipy.stats import norm
 
 sys.path.append(os.path.abspath(os.path.join(os.getcwd(), '..')))
 
-from attacks.Attack import Attack
-from attacks.HillClimbing import HillClimbing
-from attacks.SimulatedAnnealing import SimulatedAnnealing
-from attacks.TabuSearch import TabuSearch
-from neighborhoods.Neighborhood import Neighborhood
-from neighborhoods.Radar import Radar
+from universal_evasion_attacks import Attack, HillClimbing, SimulatedAnnealing, TabuSearch, Neighborhood, Radar
 
 STANDARD_TEST_SIZE = 0.2
 DATASET_NAME = "Unknown"

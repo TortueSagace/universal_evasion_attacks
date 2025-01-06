@@ -3,19 +3,9 @@ A child of the Neighborhood class that generates a neighborhood based on the rad
 The radar strategy generates inputs based on a uniform noise distribution around the original input.
 The output of the "generate" method is a list containing the generated samples.
 """
-import sys
-import json
-import numpy as np
-import gc
-sys.path.append("../master")
 
-# Importing necessary libraries
-from neighborhoods.header import *
-from neighborhoods.Neighborhood import Neighborhood
-
-# Load parameters from JSON
-with open('../master/master_params.json', 'r') as file:
-    params = json.load(file)
+from universal_evasion_attacks.config import params
+from universal_evasion_attacks import Neighborhood, random, np
 
 # Extracting the default parameters for Radar neighborhood
 params_neighborhood = params["neighborhood"]["Radar"]

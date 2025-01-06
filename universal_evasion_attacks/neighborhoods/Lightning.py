@@ -4,19 +4,8 @@ The Lightning strategy generates inputs from the outer shell of a sphere around 
 The output of the "generate" method is a list containing the generated samples.
 """
 
-import sys
-import json
-import numpy as np
-import gc
-sys.path.append("../master")
-
-# Importing necessary libraries
-from neighborhoods.header import *
-from neighborhoods.Neighborhood import Neighborhood
-
-# Load parameters from JSON
-with open('../master/master_params.json', 'r') as file:
-    params = json.load(file)
+from universal_evasion_attacks.config import params
+from universal_evasion_attacks import Neighborhood, np
 
 # Extracting the default parameters for Lightning neighborhood
 params_neighborhood = params["neighborhood"]["Lightning"]

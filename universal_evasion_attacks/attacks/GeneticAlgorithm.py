@@ -3,24 +3,8 @@ This child of the "Attack" class implements the Genetic Algorithm heuristic.
 It uses a population-based evolutionary approach to generate adversarial examples.
 """
 
-import sys
-import json
-import numpy as np
-import random
-from tqdm import tqdm
-sys.path.append("../master")
-
-# Importing necessary libraries
-from attacks.header import *
-from attacks.Attack import Attack
-from neighborhoods.Neighborhood import Neighborhood
-from neighborhoods.Radar import Radar
-from neighborhoods.Flower import Flower
-from neighborhoods.Lightning import Lightning
-
-# Load parameters from JSON
-with open('../master/master_params.json', 'r') as file:
-    params = json.load(file)
+from universal_evasion_attacks.config import params
+from universal_evasion_attacks import L2_norm, Radar, Flower, Lightning, random, tqdm, np, Attack
 
 # Mapping from strings to actual functions/classes
 object_map = {

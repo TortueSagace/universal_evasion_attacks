@@ -11,8 +11,7 @@ Abstract class for all neighborhood classes to come.
 - All neighborhoods use the original input x to generate one or more samples.
 """
 
-# Importing necessary libraries
-from neighborhoods.header import *
+import re
 
 # Defining the abstract class for all neighborhoods
 class Neighborhood:

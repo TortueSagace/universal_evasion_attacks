@@ -29,9 +29,14 @@ import time
 import importlib
 from joblib import Parallel, delayed
 import matplotlib.pyplot as plt
+import pkg_resources
+
+file_path = pkg_resources.resource_filename(
+            'universal_evasion_attacks', 'master/master_params.json'
+        )
 
 class Master:
-    def __init__(self, params_file='master_params.json', modifications_log='modifications.log', verbosity=1):
+    def __init__(self, params_file=file_path, modifications_log='modifications.log', verbosity=1):
         self.params_file = params_file
         self.modifications_log = modifications_log
         self.verbosity = verbosity  # Control verbosity

@@ -3,28 +3,15 @@ This child of the "Attack" class implements the Tabu Search heuristic.
 It uses a tabu list to keep track of recently visited solutions to avoid cycles and escape local minima.
 """
 
-import sys
-import json
-import numpy as np
-import random
-from tqdm import tqdm
-sys.path.append("../master")
-
-# Importing necessary libraries
-from attacks.header import *
-from attacks.Attack import Attack
-from neighborhoods.Neighborhood import Neighborhood
-from neighborhoods.Radar import Radar
-
-# Load parameters from JSON
-with open('../master/master_params.json', 'r') as file:
-    params = json.load(file)
+from universal_evasion_attacks.config import params
+from universal_evasion_attacks import L2_norm, Radar, Flower, Lightning, random, tqdm, np, Attack
 
 # Mapping from strings to actual functions/classes
 object_map = {
     "L2_norm": L2_norm,
     "Radar": Radar,
-    # Add other functions/classes as needed
+    "Flower": Flower,
+    "Lightning": Lightning,
 }
 
 # Extracting the default parameters for TabuSearch attack

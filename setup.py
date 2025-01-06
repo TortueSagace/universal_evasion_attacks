@@ -15,7 +15,7 @@ with open(path.join(HERE, 'README.md'), encoding='utf-8') as f:
 # This call to setup() does all the work
 setup(
     name="universal_evasion_attacks",
-    version="0.1.0",
+    version="0.1.1",
     description="Security protocols for estimating adversarial robustness of machine learning models for both tabular and image datasets."
     + " This package implements a set of evasion attacks based on heuristic optimization algorithms, and "
     + "complex cost functions to give reliable results for tabular problems.",

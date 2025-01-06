@@ -16,7 +16,6 @@ with open(path.join(HERE, 'README.md'), encoding='utf-8') as f:
 setup(
     name="universal_evasion_attacks",
     version="1.0.0",
-    include_package_data=True,
     package_data={
         'universal_evasion_attacks': ['master/master_params.json'],
     },

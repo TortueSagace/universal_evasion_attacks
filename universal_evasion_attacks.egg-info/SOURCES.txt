@@ -2,8 +2,10 @@ LICENSE
 README.md
 setup.py
 universal_evasion_attacks/__init__.py
+universal_evasion_attacks/config.py
 universal_evasion_attacks.egg-info/PKG-INFO
 universal_evasion_attacks.egg-info/SOURCES.txt
 universal_evasion_attacks.egg-info/dependency_links.txt
 universal_evasion_attacks.egg-info/requires.txt
 universal_evasion_attacks.egg-info/top_level.txt
+universal_evasion_attacks/master/master_params.json

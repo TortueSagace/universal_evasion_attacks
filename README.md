@@ -7,6 +7,7 @@ This repository contains the final code associated to my master's thesis "Heuris
 An evasion attack is a process that aims to find a perturbation of the input data that is small enough to be imperceptible to a human, but that is sufficient to change the prediction of a machine learning model. It has been proven in several articles that deep neural networks for image classification are particularly sensitive to such attacks, leading to very dangerous situations in the context of security (e.g., driverless cars) and privacy (e.g., face recognition).
 
 ![Famous example](https://miro.medium.com/v2/resize:fit:828/format:webp/1*zlxO7NuxK6ZijZtXnRl46Q.png)
+
 *Image source: [Explaining and Harnessing Adversarial Examples](https://arxiv.org/abs/1412.6572v3)*
 
 Evasion attacks on image classifiers were widely used, but tabular data classifiers are also sensitive to such attacks, and the literature is considerably less developed in this area. The goal of this thesis was to develop a set of versatile evasion attacks that can be applied on both image and tabular data classifiers (hence the term "universal"), with a particular focus on the latter. A series of different constraints types can be considered by the algorithms (equalities, inequalities, ...), allowing the evasion attacks to be implemented in realistic black-box and white-box scenarios (in particular, decision-based and transfer-based attacks).
@@ -47,8 +48,9 @@ sklearn: 1.5.2
 optuna: 4.0.0
 joblib: 1.4.2
 seaborn: 0.13.2
+matplotlib: 3.9.2
 
-Last run:  2025-01-05
+Last run:  2025-01-06
 ```
 
 This library is compatible with the [Adversarial Robustness Toolbox (ART) library](https://github.com/Trusted-AI/adversarial-robustness-toolbox).

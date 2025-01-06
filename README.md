@@ -111,8 +111,7 @@ results = custom_cost_protocol(X=X, y=y,
                 image_shape=my_image_shape,
                 constraints=my_constraints, # Will not be considered by your ART attack unless you modify it
                 attacks = [MyCustomARTAttack(), HillClimbing(), SimulatedAnnealing()],
-                verbose=2
-        )
+                verbose=2)
 ```                
 
 ## Contributions

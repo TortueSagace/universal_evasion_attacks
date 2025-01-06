@@ -49,8 +49,6 @@ Please note that there are several dependencies to run the code. The following l
 - seaborn: 0.13.2
 - matplotlib: 3.9.2
 
-This library is compatible with the [Adversarial Robustness Toolbox (ART) library](https://github.com/Trusted-AI/adversarial-robustness-toolbox).
-
 ## Simple example
 
 Here is a simple example of how to use the library. The complete juptyer notebook I used to generate results for chapter 6 of my master's thesis is available in the "examples" folder. Please not however that the data dependencies are not included in the repository.
@@ -98,7 +96,7 @@ master.rollback_json(category="attack", name="HillClimbing")
 
 ## Compatibility with ART
 
-The library is compatible with the Adversarial Robustness Toolbox (ART) library. To include specific ART attacks in the protocols, you simply need to wrap those attacks inside an Attack child class containing an appropriate "run" method (see the "attacks" folder). This might involve some work, but it is feasible in a reasonable time. After that, you can use the attack in the protocols as any other attack:
+This library is compatible with the [Adversarial Robustness Toolbox (ART) library](https://github.com/Trusted-AI/adversarial-robustness-toolbox). To include specific ART attacks in the protocols, you simply need to wrap those attacks inside an Attack child class containing an appropriate "run" method (see the "attacks" folder). This might involve some work, but it is feasible in a reasonable time. After that, you can use the attack in the protocols as any other attack:
 
 ```python
 results = custom_cost_protocol(X=X, y=y,

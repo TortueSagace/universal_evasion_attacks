@@ -120,6 +120,7 @@ This library is still in development. If you want to contribute, please feel fre
 - Finish the implementation of the neighborhoods Flower and Lightning in the "neighborhoods" folder according the their respective descriptions in chapter 3 of my thesis.
 - Finish the implementation of the attacks in the "attacks" folder.
 - Test the inequality constraints (those are implemented in the neighborhoods mother class)
+- The `trivial_success_if_already_target` is currently available in `custom_cost_protocol` but not yet in `HAR_protocol`.
 - Improve ART compatibility
 - Test with deep neural networks
 - Compare evasion attacks performances with other tabular evasion attacks like LowProFool

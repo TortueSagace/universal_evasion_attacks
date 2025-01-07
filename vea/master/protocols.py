@@ -1198,7 +1198,7 @@ def custom_cost_protocol(
     heuristic_patience=100,
     neighborhood_default_max_iter=1000,
     skip_natural_misclass=False,
-    trivial_success_if_already_target=True,
+    trivial_success_if_already_target=False,
     verbose=2,
     dataset_name="Unknown",
 ):

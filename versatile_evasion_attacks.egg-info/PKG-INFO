@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: versatile-evasion-attacks
-Version: 1.0.1
+Version: 1.0.2
 Summary: Security protocols for estimating adversarial robustness of machine learning models for both tabular and image datasets. This package implements a set of evasion attacks based on heuristic optimization algorithms, and complex cost functions to give reliable results for tabular problems.
 Home-page: https://github.com/TortueSagace/versatile_evasion_attacks
 Author: Alexandre Le Mercier
@@ -144,6 +144,7 @@ This library is still in development. If you want to contribute, please feel fre
 - Finish the implementation of the neighborhoods Flower and Lightning in the "neighborhoods" folder according the their respective descriptions in chapter 3 of my thesis.
 - Finish the implementation of the attacks in the "attacks" folder.
 - Test the inequality constraints (those are implemented in the neighborhoods mother class)
+- The `trivial_success_if_already_target` is currently available in `custom_cost_protocol` but not yet in `HAR_protocol`.
 - Improve ART compatibility
 - Test with deep neural networks
 - Compare evasion attacks performances with other tabular evasion attacks like LowProFool

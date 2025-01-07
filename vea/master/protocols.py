@@ -17,7 +17,12 @@ from scipy.stats import norm
 
 sys.path.append(os.path.abspath(os.path.join(os.getcwd(), '..')))
 
-from vea import Attack, HillClimbing, SimulatedAnnealing, TabuSearch, Neighborhood, Radar
+from attacks.Attack import Attack
+from attacks.HillClimbing import HillClimbing
+from attacks.SimulatedAnnealing import SimulatedAnnealing
+from attacks.TabuSearch import TabuSearch
+from neighborhoods.Neighborhood import Neighborhood
+from neighborhoods.Radar import Radar
 
 STANDARD_TEST_SIZE = 0.2
 DATASET_NAME = "Unknown"
@@ -1128,7 +1133,7 @@ def HAR_protocol(
         all_likelihoods.append(best_L_val)
         sum_1_minus_L += (1.0 - best_L_val)
 
-    HAR_value = (AAcc / final_num_samples) * sum_1_minus_L
+    HAR_value = 1 - (success_rate / final_num_samples) * sum_1_minus_L
     adversarial_accuracy = 1.0 - AAcc  # how many remain correct
 
     if len(all_likelihoods) == 0:
@@ -1198,7 +1203,7 @@ def custom_cost_protocol(
     heuristic_patience=100,
     neighborhood_default_max_iter=1000,
     skip_natural_misclass=False,
-    trivial_success_if_already_target=False,
+    trivial_success_if_already_target=True,
     verbose=2,
     dataset_name="Unknown",
 ):

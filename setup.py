@@ -14,17 +14,17 @@ with open(path.join(HERE, 'README.md'), encoding='utf-8') as f:
 
 # This call to setup() does all the work
 setup(
-    name="universal_evasion_attacks",
+    name="versatile_evasion_attacks",
     version="1.0.0",
     package_data={
-        'universal_evasion_attacks': ['master/master_params.json'],
+        'versatile_evasion_attacks': ['master/master_params.json'],
     },
     description="Security protocols for estimating adversarial robustness of machine learning models for both tabular and image datasets."
     + " This package implements a set of evasion attacks based on heuristic optimization algorithms, and "
     + "complex cost functions to give reliable results for tabular problems.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/TortueSagace/universal_evasion_attacks",
+    url="https://github.com/TortueSagace/versatile_evasion_attacks",
     author="Alexandre Le Mercier",
     author_email="alexandre.le.mercier@ulb.be",
     license="MIT",
@@ -43,7 +43,7 @@ setup(
         "Programming Language :: Python :: 3.13",
         "Operating System :: OS Independent"
     ],
-    packages=["universal_evasion_attacks"],
+    packages=["versatile_evasion_attacks", "vea"],
     include_package_data=True,
     install_requires=["numpy", "matplotlib", "tqdm", "scikit-learn", "xgboost", "lightgbm",
                        "pandas", "seaborn", "optuna"],

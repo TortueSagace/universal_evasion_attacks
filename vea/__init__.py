@@ -1,6 +1,3 @@
-import json
-import pkg_resources
-
 from vea.attacks.header import *
 from vea.attacks.Attack import Attack
 from vea.neighborhoods.Neighborhood import Neighborhood

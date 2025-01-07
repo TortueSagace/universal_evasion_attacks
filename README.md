@@ -54,7 +54,7 @@ Please note that there are several dependencies to run the code. The following l
 Here is a simple example of how to use the library. The complete juptyer notebook I used to generate results for chapter 6 of my master's thesis is available in the "examples" folder. Please not however that the data dependencies are not included in the repository.
 
 ```python
-from universal_evasion_attacks import HAR_protocol
+from vea import HAR_protocol
 
 # Dataset contained in a pandas format. All categorical features must be numerically encoded.
 X, y = my_dataframe.drop(columns=["target"]), my_dataframe["target"]
@@ -82,7 +82,7 @@ results_df = pd.DataFrame([results], columns=["HAR", "confidence_score", "advers
 The evasion attacks contain multiple parameters. The default parameter configurations can be found in "master.master_params.json". They can be changed by the Master class:
 
 ```python
-from universal_evasion_attacks import Master
+from vea import Master
 
 master = Master(verbosity=1) # execute once
 
@@ -103,7 +103,7 @@ master.rollback_json(category="attack", name="HillClimbing")
 This library is compatible with the [Adversarial Robustness Toolbox (ART) library](https://github.com/Trusted-AI/adversarial-robustness-toolbox). To include specific ART attacks in the protocols, you simply need to wrap those attacks inside an Attack child class containing an appropriate "run" method (see the "attacks" folder). This might involve some work, but it is feasible in a reasonable time. After that, you can use the attack in the protocols as any other attack:
 
 ```python
-from universal_evasion_attacks import custom_cost_protocol
+from vea import custom_cost_protocol
 
 results = custom_cost_protocol(X=X, y=y,
                 targeted=False,

@@ -1,0 +1,3 @@
+# [State-of-the-art Machine Learning Classifiers (tabular data)](https://www.kaggle.com/code/alexandrelemercier/all-best-tabular-classifiers-comparative-study)
+
+Chapter 2 of my master's thesis presents empirical tests over several classifiers to determine which ones to choose for conducting evasion attacks. As the code was not provided explicitly so far, I decied to share it here. The tests were conducted in a shared notebook on Kaggle, which link is in the title of this card.

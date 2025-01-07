@@ -1,0 +1,3 @@
+# [Nicholas Carlini website](https://nicholas.carlini.com/index-real.html)
+
+Nicholas Carlini is a research scientist at Google DeepMind (formerly at Google Brain) working at the intersection of machine learning and computer security. He made very interesting articles about adversarial machine learning in general (not just evasion attacks), and I cited him several times in my master's thesis. Carlini's website contains several nice introductory videos that might be interesting to watch. The link to his website is in the title of this card.

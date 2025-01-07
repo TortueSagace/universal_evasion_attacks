@@ -29,7 +29,7 @@ The following subfolders are present in the repository:
 - **master**: contains the "Master" class, which allows to automate several processes and change the global parameters of the attacks, neighborhoods and default machine learning classifiers. It also contains the "protocols.py" script, in which "HAR_protocol" and "custom_cost_protocol" are defined.
 - **neighborhoods**: contains neighborhood classes associated with heuristic attacks. The choice of the neighborhood is independent of the choice of the attack. Only the "Radar" neighborhood is fully implemented for the moment, but it is versatile enough to be used with any attack.
 
-This library was successfully tested on several datasets with different attack and machine learning classifiers (including image classifiers and tabular data classifiers). Please note that attacks on deep neural networks were not tested, but it should work as well as any other classifier with the implemented code.
+This library was successfully tested on several datasets with different attack and machine learning classifiers (including image classifiers and tabular data classifiers). The link to those dataset can be found in the [useful_links](./useful_links/) directory of this repository. Please note that attacks on deep neural networks were not tested yet, but it should work as well as the other classifiers tested in my work.
 
 ## Dependencies
 

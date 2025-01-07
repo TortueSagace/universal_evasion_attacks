@@ -123,7 +123,8 @@ This library is still in development. If you want to contribute, please feel fre
 - Improve ART compatibility
 - Test with deep neural networks
 - Compare evasion attacks performances with other tabular evasion attacks like LowProFool
-- Improve the HAR protocol if necessary
+- Implement RegSLARC, that also penalizes weighted distance between the original and adversarial examples
+- Improve the HAR protocol if necessary, by using the RegSLARC metric for instance
 - Implement other protocols for obscure tabular datasets if necessary
 - Optimizing the code for better performance if possible
 

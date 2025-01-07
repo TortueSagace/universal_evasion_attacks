@@ -1,8 +1,8 @@
 Metadata-Version: 2.1
-Name: universal-evasion-attacks
-Version: 1.0.0
+Name: versatile-evasion-attacks
+Version: 1.0.1
 Summary: Security protocols for estimating adversarial robustness of machine learning models for both tabular and image datasets. This package implements a set of evasion attacks based on heuristic optimization algorithms, and complex cost functions to give reliable results for tabular problems.
-Home-page: https://github.com/TortueSagace/universal_evasion_attacks
+Home-page: https://github.com/TortueSagace/versatile_evasion_attacks
 Author: Alexandre Le Mercier
 Author-email: alexandre.le.mercier@ulb.be
 License: MIT
@@ -22,7 +22,7 @@ Classifier: Operating System :: OS Independent
 Description-Content-Type: text/markdown
 License-File: LICENSE
 
-# Universal Evasion Attacks
+# Versatile Evasion Attacks
 
 This repository contains the final code associated to my master's thesis "Heuristic-based Evasion Attacks on State-of-the-art Near-perfect Machine Learning Classifiers", supervised by Pr. Jean-Michel Dricot, president of jury for the cybersecurity master's degree at the Université Libre de Bruxelles.
 
@@ -34,7 +34,7 @@ An evasion attack is a process that aims to find a perturbation of the input dat
 
 *Image source: [Explaining and Harnessing Adversarial Examples](https://arxiv.org/abs/1412.6572v3)*
 
-Evasion attacks on image classifiers were widely used, but tabular data classifiers are also sensitive to such attacks, and the literature is considerably less developed in this area. The goal of this thesis was to develop a set of versatile evasion attacks that can be applied on both image and tabular data classifiers (hence the term "universal"), with a particular focus on the latter. A series of different constraints types can be considered by the algorithms (equalities, inequalities, ...), allowing the evasion attacks to be implemented in realistic black-box and white-box scenarios (in particular, decision-based and transfer-based attacks).
+Evasion attacks on image classifiers were widely used, but tabular data classifiers are also sensitive to such attacks, and the literature is considerably less developed in this area. The goal of this thesis was to develop a set of versatile evasion attacks that can be applied on both image and tabular data classifiers (hence the term "versatile"), with a particular focus on the latter. A series of different constraints types can be considered by the algorithms (equalities, inequalities, ...), allowing the evasion attacks to be implemented in realistic black-box and white-box scenarios (in particular, decision-based and transfer-based attacks).
 
 ## Content
 
@@ -53,7 +53,7 @@ The following subfolders are present in the repository:
 - **master**: contains the "Master" class, which allows to automate several processes and change the global parameters of the attacks, neighborhoods and default machine learning classifiers. It also contains the "protocols.py" script, in which "HAR_protocol" and "custom_cost_protocol" are defined.
 - **neighborhoods**: contains neighborhood classes associated with heuristic attacks. The choice of the neighborhood is independent of the choice of the attack. Only the "Radar" neighborhood is fully implemented for the moment, but it is versatile enough to be used with any attack.
 
-This library was successfully tested on several datasets with different attack and machine learning classifiers (including image classifiers and tabular data classifiers). Please note that attacks on deep neural networks were not tested, but it should work as well as any other classifier with the implemented code.
+This library was successfully tested on several datasets with different attack and machine learning classifiers (including image classifiers and tabular data classifiers). The link to those dataset can be found in the [useful_links](./useful_links/) directory of this repository. Please note that attacks on deep neural networks were not tested yet, but it should work as well as the other classifiers tested in my work.
 
 ## Dependencies
 
@@ -78,7 +78,7 @@ Please note that there are several dependencies to run the code. The following l
 Here is a simple example of how to use the library. The complete juptyer notebook I used to generate results for chapter 6 of my master's thesis is available in the "examples" folder. Please not however that the data dependencies are not included in the repository.
 
 ```python
-from universal_evasion_attacks import HAR_protocol
+from vea import HAR_protocol
 
 # Dataset contained in a pandas format. All categorical features must be numerically encoded.
 X, y = my_dataframe.drop(columns=["target"]), my_dataframe["target"]
@@ -106,7 +106,7 @@ results_df = pd.DataFrame([results], columns=["HAR", "confidence_score", "advers
 The evasion attacks contain multiple parameters. The default parameter configurations can be found in "master.master_params.json". They can be changed by the Master class:
 
 ```python
-from universal_evasion_attacks import Master
+from vea import Master
 
 master = Master(verbosity=1) # execute once
 
@@ -127,7 +127,7 @@ master.rollback_json(category="attack", name="HillClimbing")
 This library is compatible with the [Adversarial Robustness Toolbox (ART) library](https://github.com/Trusted-AI/adversarial-robustness-toolbox). To include specific ART attacks in the protocols, you simply need to wrap those attacks inside an Attack child class containing an appropriate "run" method (see the "attacks" folder). This might involve some work, but it is feasible in a reasonable time. After that, you can use the attack in the protocols as any other attack:
 
 ```python
-from universal_evasion_attacks import custom_cost_protocol
+from vea import custom_cost_protocol
 
 results = custom_cost_protocol(X=X, y=y,
                 targeted=False,
@@ -135,8 +135,7 @@ results = custom_cost_protocol(X=X, y=y,
                 image_shape=my_image_shape,
                 constraints=my_constraints, # Will not be considered by your ART attack unless you modify it
                 attacks = [MyCustomARTAttack(), HillClimbing(), SimulatedAnnealing()],
-                verbose=2
-                )
+                verbose=2)
 ```                
 
 ## Contributions
@@ -148,7 +147,8 @@ This library is still in development. If you want to contribute, please feel fre
 - Improve ART compatibility
 - Test with deep neural networks
 - Compare evasion attacks performances with other tabular evasion attacks like LowProFool
-- Improve the HAR protocol if necessary
+- Implement RegSLARC, that also penalizes weighted distance between the original and adversarial examples
+- Improve the HAR protocol if necessary, by using the RegSLARC metric for instance
 - Implement other protocols for obscure tabular datasets if necessary
 - Optimizing the code for better performance if possible
 

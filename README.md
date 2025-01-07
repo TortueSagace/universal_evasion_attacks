@@ -1,4 +1,4 @@
-# Universal Evasion Attacks
+# Versatile Evasion Attacks
 
 This repository contains the final code associated to my master's thesis "Heuristic-based Evasion Attacks on State-of-the-art Near-perfect Machine Learning Classifiers", supervised by Pr. Jean-Michel Dricot, president of jury for the cybersecurity master's degree at the Université Libre de Bruxelles.
 
@@ -10,7 +10,7 @@ An evasion attack is a process that aims to find a perturbation of the input dat
 
 *Image source: [Explaining and Harnessing Adversarial Examples](https://arxiv.org/abs/1412.6572v3)*
 
-Evasion attacks on image classifiers were widely used, but tabular data classifiers are also sensitive to such attacks, and the literature is considerably less developed in this area. The goal of this thesis was to develop a set of versatile evasion attacks that can be applied on both image and tabular data classifiers (hence the term "universal"), with a particular focus on the latter. A series of different constraints types can be considered by the algorithms (equalities, inequalities, ...), allowing the evasion attacks to be implemented in realistic black-box and white-box scenarios (in particular, decision-based and transfer-based attacks).
+Evasion attacks on image classifiers were widely used, but tabular data classifiers are also sensitive to such attacks, and the literature is considerably less developed in this area. The goal of this thesis was to develop a set of versatile evasion attacks that can be applied on both image and tabular data classifiers (hence the term "versatile"), with a particular focus on the latter. A series of different constraints types can be considered by the algorithms (equalities, inequalities, ...), allowing the evasion attacks to be implemented in realistic black-box and white-box scenarios (in particular, decision-based and transfer-based attacks).
 
 ## Content
 

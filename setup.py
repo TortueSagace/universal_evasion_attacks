@@ -15,7 +15,7 @@ with open(path.join(HERE, 'README.md'), encoding='utf-8') as f:
 # This call to setup() does all the work
 setup(
     name="versatile_evasion_attacks",
-    version="1.0.0",
+    version="1.0.1",
     package_data={
         'versatile_evasion_attacks': ['master/master_params.json'],
     },
@@ -43,7 +43,7 @@ setup(
         "Programming Language :: Python :: 3.13",
         "Operating System :: OS Independent"
     ],
-    packages=["versatile_evasion_attacks", "vea"],
+    packages=["vea"],
     include_package_data=True,
     install_requires=["numpy", "matplotlib", "tqdm", "scikit-learn", "xgboost", "lightgbm",
                        "pandas", "seaborn", "optuna"],

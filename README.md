@@ -120,6 +120,7 @@ This library is still in development. If you want to contribute, please feel fre
 - Finish the implementation of the neighborhoods Flower and Lightning in the "neighborhoods" folder according the their respective descriptions in chapter 3 of my thesis.
 - Finish the implementation of the attacks in the "attacks" folder.
 - Test the inequality constraints (those are implemented in the neighborhoods mother class)
+- Add scaling possibilities for neighborhood search (currently, the neighborhood algorithm makes equal steps in all directions, but taking into account the standard deviation of the features could be interesting)
 - The `trivial_success_if_already_target` is currently available in `custom_cost_protocol` but not yet in `HAR_protocol`.
 - Improve ART compatibility
 - Test with deep neural networks

@@ -15,7 +15,7 @@ with open(path.join(HERE, 'README.md'), encoding='utf-8') as f:
 # This call to setup() does all the work
 setup(
     name="versatile_evasion_attacks",
-    version="1.0.3",
+    version="1.0.4",
     package_data={
         'versatile_evasion_attacks': ['master/master_params.json'],
     },

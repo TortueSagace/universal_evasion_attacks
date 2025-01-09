@@ -16,6 +16,7 @@ vea/attacks/__init__.py
 vea/attacks/header.py
 vea/master/Master.py
 vea/master/__init__.py
+vea/master/master_params.json
 vea/master/protocols.py
 vea/neighborhoods/Flower.py
 vea/neighborhoods/Lightning.py

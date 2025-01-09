@@ -15,9 +15,11 @@ with open(path.join(HERE, 'README.md'), encoding='utf-8') as f:
 # This call to setup() does all the work
 setup(
     name="versatile_evasion_attacks",
-    version="1.1.1",
+    version="1.1.2",
+    # Tells setuptools to include your data files in the wheel/sdist
+    include_package_data=True,  
     package_data={
-        'versatile_evasion_attacks': ['master/master_params.json'],
+        "vea": ["master/master_params.json"],  # <== Put master_params.json under the `vea` package
     },
     description="Security protocols for estimating adversarial robustness of machine learning models for both tabular and image datasets."
     + " This package implements a set of evasion attacks based on heuristic optimization algorithms, and "
@@ -44,7 +46,6 @@ setup(
         "Operating System :: OS Independent"
     ],
     packages=find_packages(include=["vea", "vea.*"]),
-    include_package_data=True,
     install_requires=["numpy", "matplotlib", "tqdm", "scikit-learn", "xgboost", "lightgbm",
                        "pandas", "seaborn", "optuna"],
 )

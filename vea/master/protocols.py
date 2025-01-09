@@ -1238,7 +1238,8 @@ def custom_cost_protocol(
          "avg_cost": ...,
          "min_cost": ...,
          "samples_attacked": ...,
-         "results": List of (best_candidate, cost, success)
+         "results": List of (original_sample, best_candidate, cost)
+                    for each successful attack
        }
     """
     global DATASET_NAME
@@ -1276,14 +1277,11 @@ def custom_cost_protocol(
     # -----------------------------
     # 3) BUILD ATTACK CANDIDATES
     # -----------------------------
-    # If 'targeted=True', we exclude samples that already have label == target_class
-    # because we want to flip from different class => target_class.
-    # If 'untargeted', we can keep all samples. But let's mimic HAR logic:
     if targeted:
         subset_mask = (y_test != target_class)
     else:
-        # we can just use everything
         subset_mask = np.ones(len(y_test), dtype=bool)  # all True
+
     X_candidates = X_test[subset_mask]
     y_candidates = y_test[subset_mask]
 
@@ -1301,22 +1299,16 @@ def custom_cost_protocol(
     X_attack = X_candidates.iloc[idx].copy()
     y_true   = y_candidates.iloc[idx].copy()
 
-    # Possibly skip "naturally misclassified" or "naturally = target_class" samples
-    # if user wants skip_natural_misclass.
     final_indices = []
     for i in range(sample_number):
         x0_orig = X_attack.iloc[i]
         pred = estimator.predict(x0_orig.values.reshape(1, -1))[0]
         if targeted:
-            # If targeted => we want to flip to target_class.
-            # If skip_natural_misclass => skip if 'pred==target_class'.
-            if pred == target_class:
-                if skip_natural_misclass:
-                    continue
-                # else treat it as trivial success if user wants
-                # or skip it. We'll handle in the process
+            # If skip_natural_misclass => skip if 'pred==target_class'
+            if pred == target_class and skip_natural_misclass:
+                continue
         else:
-            # untargeted => skip if 'pred != y_true'?
+            # skip if 'pred != y_true'
             if skip_natural_misclass and (pred != y_true.iloc[i]):
                 continue
         final_indices.append(i)
@@ -1376,18 +1368,17 @@ def custom_cost_protocol(
     def process_one_sample(i):
         """
         For sample index i in X_attack, run all attacks, pick the best solution (lowest cost).
-        Return (best_candidate, best_cost, success).
+        Return (original_sample, best_candidate, best_cost, success).
         """
-
         x0_orig = X_attack.iloc[i]
         y0      = y_true.iloc[i]
 
-        # Check if it's trivially success (targeted & pred==target_class)
+        # Check for trivial success
         pred_before = estimator.predict(x0_orig.values.reshape(1, -1))[0]
-        if trivial_success_if_already_target and ((targeted and pred_before == target_class)
-                                                  or (not targeted and pred_before != y0)):
-            # We do not need to run anything => success
-            return x0_orig, 0.0, True
+        if trivial_success_if_already_target:
+            if (targeted and pred_before == target_class) or (not targeted and pred_before != y0):
+                # Trivial success with cost=0
+                return x0_orig, x0_orig, 0.0, True
 
         best_candidate = None
         best_cost = float("inf")
@@ -1415,49 +1406,53 @@ def custom_cost_protocol(
                     print(f"[custom_cost_protocol] Attack error: {e}")
                 continue
 
-        # Evaluate success
         if best_candidate is None:
-            # Attack never returned anything valid
-            return None, float("inf"), False
+            return x0_orig, None, float("inf"), False
 
+        # Evaluate success
         if images:
-            # For images => check if label changed or target label is reached
+            # If images => success if label changed (untargeted) or target label is reached (targeted)
             pred_after = estimator.predict(best_candidate.values.reshape(1, -1))[0]
-            if targeted:
-                success = (pred_after == target_class)
-            else:
-                success = (pred_after != pred_before)
+            success = (pred_after == target_class) if targeted else (pred_after != pred_before)
         else:
             # Tabular => success if profit_func(...) > 0
             if cost_profit_func is not None:
-                prof = -best_cost
-                success = (prof > 0)
+                profit_val = -best_cost  # since cost = -profit
+                success = (profit_val > 0)
             else:
-                success = False  # fallback
+                success = False
 
-        return best_candidate, best_cost, success
+        return x0_orig, best_candidate, best_cost, success
 
     # Decide parallel or serial
     if use_joblib:
         if VERBOSE > 1:
             print("[custom_cost_protocol] Parallel processing with joblib.")
-        results = Parallel(n_jobs=-1)(
+        raw_results = Parallel(n_jobs=-1)(
             delayed(process_one_sample)(i) for i in final_indices
         )
     else:
         if VERBOSE > 1:
             print("[custom_cost_protocol] Processing in single thread.")
-        results = []
+        raw_results = []
         for i in final_indices:
-            results.append(process_one_sample(i))
+            raw_results.append(process_one_sample(i))
 
-    # Summarize
-    success_count = sum(r[2] for r in results)
-    attacked_count = len(final_indices)
-    success_rate  = success_count / attacked_count if attacked_count>0 else 0.0
-    all_costs     = [r[1] for r in results if r[1] != float("inf")]
-    avg_cost      = np.mean(all_costs) if len(all_costs)>0 else float("nan")
-    min_cost      = np.min(all_costs) if len(all_costs)>0 else float("nan")
+    # Only keep successful attacks
+    successful_only = [
+        (orig, adv, cst)
+        for (orig, adv, cst, success) in raw_results
+        if success
+    ]
+
+    success_count   = len(successful_only)
+    attacked_count  = len(final_indices)
+    success_rate    = success_count / attacked_count if attacked_count > 0 else 0.0
+
+    # Costs among successes only
+    all_costs = [r[2] for r in successful_only]
+    avg_cost  = np.mean(all_costs) if len(all_costs) > 0 else float("nan")
+    min_cost  = np.min(all_costs)  if len(all_costs) > 0 else float("nan")
 
     if VERBOSE > 0:
         print("\n=== Custom Cost Protocol Results ===")
@@ -1467,28 +1462,23 @@ def custom_cost_protocol(
         print(f"Average cost:     {avg_cost:.4f}")
         print(f"Minimum cost:     {min_cost:.4f}")
 
-    # If images=True and VERBOSE>0, display final images side-by-side
+    # Optionally show images side by side (only for successes)
     if images and VERBOSE > 0:
-        for idx_in_list, (best_x, cst, success) in enumerate(results):
+        for idx_in_list, (x0_orig, best_x, cst) in enumerate(successful_only):
             if best_x is None:
                 continue
 
-            # Original sample from X_attack
-            i_attack = final_indices[idx_in_list]
-            x0_orig = X_attack.iloc[i_attack]
             arr_orig = np.array(x0_orig)
             arr_adv  = np.array(best_x)
-
             if arr_orig.size != arr_adv.size:
                 if VERBOSE > 1:
-                    print(f"Skipping sample {i_attack}: mismatch in size {arr_orig.size} vs {arr_adv.size}.")
+                    print(f"Skipping sample idx={idx_in_list}: mismatch in size.")
                 continue
 
             # Figure out shape
             if image_shape is not None:
                 (h, w, c) = image_shape
             else:
-                # auto-guess
                 n = arr_orig.size
                 side = int(sqrt(n))
                 if side*side == n:
@@ -1515,15 +1505,15 @@ def custom_cost_protocol(
             # Possibly show predicted label
             if estimator is not None and hasattr(estimator, "predict"):
                 pred_after = estimator.predict(best_x.values.reshape(1, -1))[0]
-                axes[1].set_title(f"Adversarial\nPred={pred_after}, Cost={cst:.2f}, Success={success}")
+                axes[1].set_title(f"Adversarial\nPred={pred_after}, Cost={cst:.2f}")
             else:
-                axes[1].set_title(f"Adversarial\nCost={cst:.2f}\nSuccess={success}")
+                axes[1].set_title(f"Adversarial\nCost={cst:.2f}")
 
             axes[1].imshow(arr_adv_reshaped.squeeze(), cmap="gray" if c==1 else None)
             axes[1].axis("off")
 
             plt.tight_layout()
-            if graphs_dir is not "" and not graphs_dir.endswith("/"):
+            if graphs_dir != "" and not graphs_dir.endswith("/"):
                 graphs_dir += "/"
             plt.savefig(f"{graphs_dir}{DATASET_NAME}_success_cost_{cst}.png")
             plt.show()
@@ -1533,5 +1523,7 @@ def custom_cost_protocol(
         "avg_cost": avg_cost,
         "min_cost": min_cost,
         "samples_attacked": attacked_count,
-        "results": results  # (best_candidate, cost, success) for each attacked sample
+        # Return only the successful samples, each with
+        # (original_sample, adversarial_sample, cost).
+        "results": successful_only
     }

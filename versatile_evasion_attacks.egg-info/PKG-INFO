@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: versatile-evasion-attacks
-Version: 1.1.2
+Version: 1.1.3
 Summary: Security protocols for estimating adversarial robustness of machine learning models for both tabular and image datasets. This package implements a set of evasion attacks based on heuristic optimization algorithms, and complex cost functions to give reliable results for tabular problems.
 Home-page: https://github.com/TortueSagace/versatile_evasion_attacks
 Author: Alexandre Le Mercier

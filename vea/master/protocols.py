@@ -439,7 +439,8 @@ def check_SLARC_hypotheses(
     plot_kde=True,
     stop_after_computing_slarc_params=False,
     precomputed_M=None, # If precomputed, pass them here
-    precomputed_S=None
+    precomputed_S=None,
+    graphs_dir=""
 ):
     """
     Performs statistical checks on the hypotheses of the SLARC cost function.
@@ -479,6 +480,9 @@ def check_SLARC_hypotheses(
         - float: The confidence score.
         - dict: The SLARC parameters (M, S matrices, etc.) for future use.
     """
+
+    if graphs_dir != "" and not graphs_dir.endswith("/"):
+        graphs_dir += "/"
 
     # ----------------------
     # 0) Helper definitions
@@ -602,7 +606,7 @@ def check_SLARC_hypotheses(
                 axes[1].set_ylabel("Label on which SLAAC is computed")
 
                 plt.tight_layout()
-                plt.savefig(f"graphs/{DATASET_NAME}_SLAAC_M_S_matrices.png")
+                plt.savefig(f"{graphs_dir}{DATASET_NAME}_SLAAC_M_S_matrices.png")
                 plt.show()
 
             if plot_kde:
@@ -653,7 +657,7 @@ def check_SLARC_hypotheses(
                 plt.ylabel("Density", fontsize=14)
                 plt.legend(title="Computed From Label", fontsize=12, title_fontsize=13)
                 plt.tight_layout()
-                plt.savefig(f"graphs/{DATASET_NAME}_SLAAC_KDE.png")
+                plt.savefig(f"{graphs_dir}{DATASET_NAME}_SLAAC_KDE.png")
                 plt.show()
 
     # 7) Confidence score = min(all_scores); threshold for acceptance is 0.5
@@ -786,6 +790,7 @@ def HAR_protocol(
     debug_mode=False,
     stop_after_computing_slarc_params=False,
     dataset_name="Unknown",
+    graphs_dir=""
 ):
     """
     HAR protocol:
@@ -978,7 +983,8 @@ def HAR_protocol(
                                                           SLARC_check_max_samples,
                                                           SLARC_check_labels_to_check,
                                                           precomputed_M=precomputed_M,
-                                                          precomputed_S=precomputed_S)
+                                                          precomputed_S=precomputed_S,
+                                                          graphs_dir=graphs_dir)
         if VERBOSE > 0:
             print(f"\n--- Confidence score: {confidence_score:.4f} ---")
         if not check6:
@@ -996,7 +1002,8 @@ def HAR_protocol(
                                         SLARC_check_labels_to_check,
                                         precomputed_M=precomputed_M,
                                         precomputed_S=precomputed_S,
-                                        stop_after_computing_slarc_params=True) # SLARC_PARAMS is set here
+                                        stop_after_computing_slarc_params=True,
+                                        graphs_dir=graphs_dir) # SLARC_PARAMS is set here
         
         if precomputed_confidence_score is not None:
             confidence_score = precomputed_confidence_score
@@ -1199,6 +1206,7 @@ def custom_cost_protocol(
     trivial_success_if_already_target=True,
     verbose=2,
     dataset_name="Unknown",
+    graphs_dir=""
 ):
     """
     A simpler protocol than HAR, using a custom cost function:
@@ -1515,7 +1523,9 @@ def custom_cost_protocol(
             axes[1].axis("off")
 
             plt.tight_layout()
-            plt.savefig(f"graphs/{DATASET_NAME}_success_cost_{cst}.png")
+            if graphs_dir is not "" and not graphs_dir.endswith("/"):
+                graphs_dir += "/"
+            plt.savefig(f"{graphs_dir}{DATASET_NAME}_success_cost_{cst}.png")
             plt.show()
 
     return {

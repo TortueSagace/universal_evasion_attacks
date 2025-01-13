@@ -1,6 +1,6 @@
 # Versatile Evasion Attacks
 
-This repository contains the final code associated to my master's thesis "Metaheuristic-based Evasion Attacks on State-of-the-art Near-perfect Machine Learning Classifiers", supervised by Pr. Jean-Michel Dricot, president of jury for the cybersecurity master's degree at the Université Libre de Bruxelles.
+This repository contains the final code associated to my master's thesis "Metaheuristic-based Evasion Attacks on State-of-the-art Near-perfect Machine Learning Classifiers", supervised by Pr. Jean-Michel Dricot,President of jury of the Master of Science in Cybersecurity at the Université Libre de Bruxelles (ULB).
 
 ## Context
 

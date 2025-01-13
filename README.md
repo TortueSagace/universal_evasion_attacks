@@ -1,6 +1,6 @@
 # Versatile Evasion Attacks
 
-This repository contains the final code associated to my master's thesis "Heuristic-based Evasion Attacks on State-of-the-art Near-perfect Machine Learning Classifiers", supervised by Pr. Jean-Michel Dricot, president of jury for the cybersecurity master's degree at the Université Libre de Bruxelles.
+This repository contains the final code associated to my master's thesis "Metaheuristic-based Evasion Attacks on State-of-the-art Near-perfect Machine Learning Classifiers", supervised by Pr. Jean-Michel Dricot, president of jury for the cybersecurity master's degree at the Université Libre de Bruxelles.
 
 ## Context
 
@@ -132,7 +132,7 @@ This library is still in development. If you want to contribute, please feel fre
 
 ## License
 
-This code is distributed under the MIT license. Feel free to use it for your own research, but please cite the thesis "Heuristic-based Evasion Attacks on State-of-the-art Near-perfect Machine Learning Classifiers" by Alexandre Le Mercier (will be published later in 2025) if you use it in a publication.
+This code is distributed under the MIT license. Feel free to use it for your own research, but please cite the thesis "Metaheuristic-based Evasion Attacks on State-of-the-art Near-perfect Machine Learning Classifiers" by Alexandre Le Mercier (will be published later in 2025) if you use it in a publication.
 
 
 Happy coding!

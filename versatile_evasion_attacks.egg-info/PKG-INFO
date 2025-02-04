@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: versatile-evasion-attacks
-Version: 1.1.4
+Version: 1.1.5
 Summary: Security protocols for estimating adversarial robustness of machine learning models for both tabular and image datasets. This package implements a set of evasion attacks based on heuristic optimization algorithms, and complex cost functions to give reliable results for tabular problems.
 Home-page: https://github.com/TortueSagace/versatile_evasion_attacks
 Author: Alexandre Le Mercier
@@ -24,7 +24,7 @@ License-File: LICENSE
 
 # Versatile Evasion Attacks
 
-This repository contains the final code associated to my master's thesis "Heuristic-based Evasion Attacks on State-of-the-art Near-perfect Machine Learning Classifiers", supervised by Pr. Jean-Michel Dricot, president of jury for the cybersecurity master's degree at the Université Libre de Bruxelles.
+This repository contains the final code associated to my master's thesis "Metaheuristic-based Evasion Attacks on State-of-the-art Near-perfect Machine Learning Classifiers", supervised by Pr. Jean-Michel Dricot,President of jury of the Master of Science in Cybersecurity at the Université Libre de Bruxelles (ULB).
 
 ## Context
 
@@ -156,7 +156,7 @@ This library is still in development. If you want to contribute, please feel fre
 
 ## License
 
-This code is distributed under the MIT license. Feel free to use it for your own research, but please cite the thesis "Heuristic-based Evasion Attacks on State-of-the-art Near-perfect Machine Learning Classifiers" by Alexandre Le Mercier (will be published later in 2025) if you use it in a publication.
+This code is distributed under the MIT license. Feel free to use it for your own research, but please cite the thesis "Metaheuristic-based Evasion Attacks on State-of-the-art Near-perfect Machine Learning Classifiers" by Alexandre Le Mercier (will be published later in 2025) if you use it in a publication.
 
 
-Happy coding!
+Happy coding!

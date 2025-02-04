@@ -4,12 +4,12 @@ This is the simplest heuristic; it simply chooses the best sample in the neighbo
 """
 
 from vea.config import params
-from vea import L2_norm, Radar, Flower, Lightning, random, tqdm, np, Attack, sys
+from vea import L2_norm, Balloon, Flower, Lightning, random, tqdm, np, Attack, sys
 
 # Mapping from strings to actual functions/classes
 object_map = {
     "L2_norm": L2_norm,
-    "Radar": Radar,
+    "Balloon": Balloon,
     "Flower": Flower,
     "Lightning": Lightning
 }

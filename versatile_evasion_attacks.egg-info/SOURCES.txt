@@ -18,10 +18,10 @@ vea/master/Master.py
 vea/master/__init__.py
 vea/master/master_params.json
 vea/master/protocols.py
+vea/neighborhoods/Balloon.py
 vea/neighborhoods/Flower.py
 vea/neighborhoods/Lightning.py
 vea/neighborhoods/Neighborhood.py
-vea/neighborhoods/Radar.py
 vea/neighborhoods/__init__.py
 vea/neighborhoods/header.py
 versatile_evasion_attacks.egg-info/PKG-INFO

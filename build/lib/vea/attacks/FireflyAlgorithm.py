@@ -4,12 +4,12 @@ It uses the attraction mechanism among fireflies to generate adversarial example
 """
 
 from vea.config import params
-from vea import L2_norm, Radar, Flower, Lightning, random, tqdm, np, Attack
+from vea import L2_norm, Balloon, Flower, Lightning, random, tqdm, np, Attack
 
 # Mapping from strings to actual functions/classes
 object_map = {
     "L2_norm": L2_norm,
-    "Radar": Radar,
+    "Balloon": Balloon,
     "Flower": Flower,
     "Lightning": Lightning,
 }

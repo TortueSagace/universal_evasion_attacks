@@ -1,6 +1,7 @@
 from vea.attacks.header import *
 from vea.attacks.Attack import Attack
 from vea.neighborhoods.Neighborhood import Neighborhood
+from vea.neighborhoods.Balloon import Balloon
 from vea.neighborhoods.Balloon import Radar
 from vea.neighborhoods.Flower import Flower
 from vea.neighborhoods.Lightning import Lightning

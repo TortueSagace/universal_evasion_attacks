@@ -1,23 +1,23 @@
 """
-A child of the Neighborhood class that generates a neighborhood based on the radar strategy.
-The radar strategy generates inputs based on a uniform noise distribution around the original input.
+A child of the Neighborhood class that generates a neighborhood based on the Balloon strategy.
+The Balloon strategy generates inputs based on a uniform noise distribution around the original input.
 The output of the "generate" method is a list containing the generated samples.
 """
 
 from vea.config import params
 from vea import Neighborhood, random, np
 
-# Extracting the default parameters for Radar neighborhood
-params_neighborhood = params["neighborhood"]["Radar"]
+# Extracting the default parameters for Balloon neighborhood
+params_neighborhood = params["neighborhood"]["Balloon"]
 
-# Defining the Radar class
-class Radar(Neighborhood):
+# Defining the Balloon class
+class Balloon(Neighborhood):
     """
-    Child of the Neighborhood class that generates a neighborhood based on the radar strategy.
+    Child of the Neighborhood class that generates a neighborhood based on the Balloon strategy.
     """
     def __init__(self, constraints: dict, **kwargs):
         """
-        Constructor for the Radar class.
+        Constructor for the Balloon class.
 
         Parameters:
             constraints: dict, the constraints for the neighborhood.
@@ -37,7 +37,7 @@ class Radar(Neighborhood):
 
     def generate(self, x, perturbation_weights: list, return_inflation_vector=False) -> list:
         """
-        Method for generating a neighborhood based on the radar strategy.
+        Method for generating a neighborhood based on the Balloon strategy.
         Parameters:
             x: list or numpy array, the original input.
             perturbation_weights: list, the weights for the perturbation (list of the same size as x).
@@ -162,11 +162,11 @@ class Radar(Neighborhood):
         for k in range(max_trials):
             if self.enable_warning_message:
                 if k == max_trials // 10:
-                    print(f"Radar Warning: The number of trials exceeded 10% of maximum generation trials. Found {len(adv_samples)} valid samples.")
+                    print(f"Balloon Warning: The number of trials exceeded 10% of maximum generation trials. Found {len(adv_samples)} valid samples.")
                 elif k == max_trials // 4:
-                    print(f"Radar Warning: The number of trials exceeded 25% of maximum generation trials. Found {len(adv_samples)} valid samples.")
+                    print(f"Balloon Warning: The number of trials exceeded 25% of maximum generation trials. Found {len(adv_samples)} valid samples.")
                 elif k == max_trials // 2:
-                    print(f"Radar Warning: The number of trials exceeded 50% of maximum generation trials. Found {len(adv_samples)} valid samples.")
+                    print(f"Balloon Warning: The number of trials exceeded 50% of maximum generation trials. Found {len(adv_samples)} valid samples.")
 
             queries += num_samples
             samples, inflation_vectors = self.generate(x, perturbation_weights, return_inflation_vector=True)
@@ -207,7 +207,10 @@ class Radar(Neighborhood):
             return adv_samples, queries
         else:
             if np.inf in perturbation_weights:
-                raise Exception(f"RADAR: Overflow in the perturbation weights. Possible solutions:\n"
+                raise Exception(f"Balloon: Overflow in the perturbation weights. Possible solutions:\n"
                                 f"    1. Disable dynamic perturbation (set dynamic perturbation factor to 1.0)\n"
                                 f"    2. Enable negative values in the inflation vector, and set min and max clips for every feature.")
-            raise Exception(f"RADAR: No valid sample satisfied the constraints after {max_trials} trials.")
+            raise Exception(f"Balloon: No valid sample satisfied the constraints after {max_trials} trials.")
+        
+# Create an alias for backward compatibility:
+Radar = Balloon

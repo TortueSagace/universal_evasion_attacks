@@ -15,7 +15,7 @@ with open(path.join(HERE, 'README.md'), encoding='utf-8') as f:
 # This call to setup() does all the work
 setup(
     name="versatile_evasion_attacks",
-    version="1.1.4",
+    version="1.1.5",
     # Tells setuptools to include your data files in the wheel/sdist
     include_package_data=True,  
     package_data={

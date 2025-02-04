@@ -15,7 +15,7 @@ import joblib
 import matplotlib.pyplot as plt
 from scipy.stats import norm
 
-from vea import Attack, HillClimbing, SimulatedAnnealing, TabuSearch, Neighborhood, Radar
+from vea import Attack, HillClimbing, SimulatedAnnealing, TabuSearch, Neighborhood, Balloon
 
 STANDARD_TEST_SIZE = 0.2
 DATASET_NAME = "Unknown"
@@ -935,7 +935,7 @@ def HAR_protocol(
         raise HarError("[Stage 3] Invalid constraints for the HAR protocol.")
 
     if neighborhood is None:
-        neighborhood = Radar(constraints, max_iter_generation=neighborhood_default_max_iter, enable_warning_message=(VERBOSE>1))
+        neighborhood = Balloon(constraints, max_iter_generation=neighborhood_default_max_iter, enable_warning_message=(VERBOSE>1))
 
     if attacks is None:
         attacks = [
@@ -1334,7 +1334,7 @@ def custom_cost_protocol(
         raise HarError("[Stage 3] Invalid constraints for the custom protocol.")
 
     if neighborhood is None:
-        neighborhood = Radar(constraints, max_iter_generation=neighborhood_default_max_iter, enable_warning_message=(VERBOSE>1))
+        neighborhood = Balloon(constraints, max_iter_generation=neighborhood_default_max_iter, enable_warning_message=(VERBOSE>1))
 
     if attacks is None:
         attacks = [

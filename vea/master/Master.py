@@ -7,7 +7,7 @@ Parameters are built as params[category][name][parameter].
 - Model (default values, can be completed by the user): XGBClassifier, LGBClassifier, ExtraTreesClassifier, HistogramGradientBoostingClassifier.
 - Data: should be added by the user but contains default datasets: Iris and MNIST.
 - Attack (fixed list): HillClimbing, SimulatedAnnealing, TabuSearch.
-- Neighborhood (fixed list): Radar.
+- Neighborhood (fixed list): Balloon.
 - Environment (fixed list): time, user, ...
 """
 
@@ -881,7 +881,7 @@ class Master:
         attack_params.update(kwargs)
 
         # Get neighborhood parameters
-        neighborhood_name = attack_params.get('neighborhood', 'Radar')
+        neighborhood_name = attack_params.get('neighborhood', 'Balloon')
         if neighborhood_name not in self.neighborhood_params:
             if self.verbosity > 0:
                 print(f"Neighborhood {neighborhood_name} is not implemented yet.")
